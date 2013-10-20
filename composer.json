@@ -1,6 +1,7 @@
 {
   "require": {
-    "symfony/console": "2.*"
+    "symfony/console": "2.*",
+    "kriswallsmith/buzz": "dev-master"
   },
   "autoload": {
       "psr-0": {"consoleHello": "src/"}

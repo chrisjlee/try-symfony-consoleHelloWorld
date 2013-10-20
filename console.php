@@ -1,14 +1,15 @@
+#!/usr/bin/env php
 <?php
-require_once('vendor/autoload.php');
+require __DIR__ . '/vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+// use Symfony\Component\DomCrawler\Crawler;
 
-
-$console = new Application();
+$console = new Application('Hello World', '0.1.0');
 
 $console
   ->register('say:hello')
@@ -28,6 +29,35 @@ The <info>say:hello</info> command will offer greetings.
   ->setCode(function (InputInterface $input, OutputInterface $output) {
     $person = $input->getArgument('person');
     $output->writeln('Hello <info>'.$person.'</info>');
+  });
+
+/**
+ *  Console Application: Using an Example Argument and validation
+ */
+
+$console
+  ->register('google:run')
+  ->setDescription('Google console application that retrieves search.')
+  ->setDefinition(array(
+    new InputArgument('sportType', InputArgument::OPTIONAL, 'Please provide a sport type', 'baseball'),
+  ))
+  ->setCode(function (InputInterface $input, OutputInterface $output) {
+
+    $sportTypeWhitelist = array(
+      'baseball',
+      'basketball',
+      'soccer',
+      'hockey',
+    );
+
+    $sportType = $input->getArgument('sportType');
+
+    if (!in_array($sportType, $sportTypeWhitelist)) {
+      $output->writeln('<error>Please provide a valid sport type.</error>');
+    } else {
+        $output->writeln($sportType);
+    }
+
   });
 
 $console->run();
