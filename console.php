@@ -34,7 +34,6 @@ The <info>say:hello</info> command will offer greetings.
 /**
  *  Console Application: Using an Example Argument and validation
  */
-
 $console
   ->register('google:run')
   ->setDescription('Google console application that retrieves search.')
@@ -55,7 +54,7 @@ $console
     if (!in_array($sportType, $sportTypeWhitelist)) {
       $output->writeln('<error>Please provide a valid sport type.</error>');
     } else {
-        $output->writeln($sportType);
+      $output->writeln($sportType);
     }
 
   });
