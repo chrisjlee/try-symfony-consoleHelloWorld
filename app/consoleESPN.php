@@ -11,17 +11,27 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Guzzle\Http\Client;
 
-// Load key file
+/**
+ * Load ESPN key file.
+ * The ESPN key file contains the consumer keys that allows access to API
+ *
+ * 1. Create an account with ESPN and the key should be found at:
+ *     - http://developer.espn.com/apps/mykeys
+ * 2. In your 'secret.key' file set $consumerKey variable:
+ *   <code>
+ *   <?php
+ *     $consumerKey = 'mykey';
+ *   </code>
+ */
 if (file_exists(__DIR__ .'secret.key' ))
   @include 'secret.key';
 
-// Create application
+// Constructor
 $console = new Application('Console: ESPN', '0.1.0');
 
 /**
- *  Console: Provides example of validation of arguments
+ *  Console: Provides example of validation of arguments and call to api.espn.com
  */
-
 
 $client = new Client('http://api.espn.com');
 
