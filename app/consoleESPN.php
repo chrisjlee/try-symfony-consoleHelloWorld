@@ -23,8 +23,9 @@ use Guzzle\Http\Client;
  *     $consumerKey = 'mykey';
  *   </code>
  */
-if (file_exists(__DIR__ .'secret.key' ))
-  @include 'secret.key';
+// if (file_exists(__DIR__ .'secret.key' ))
+//   @include 'secret.key';
+$consumerKey = '99adppxa2pkmyrb537shwptw';
 
 // Constructor
 $console = new Application('Console: ESPN', '0.1.0');
@@ -33,7 +34,9 @@ $console = new Application('Console: ESPN', '0.1.0');
  *  Console: Provides example of validation of arguments and call to api.espn.com
  */
 
-$client = new Client('http://api.espn.com');
+$client = new Client('https://api.espn.com/{version}/sports');
+$request = $client->get("sports?apikey=$consumerKey");
+$response = $request->send();
 
 $console
   ->register('espn:run')
@@ -45,7 +48,7 @@ sports type.
   ->setDefinition(array(
     new InputArgument('sportType', InputArgument::OPTIONAL, 'Please provide a sport type', 'baseball'),
   ))
-  ->setCode(function (InputInterface $input, OutputInterface $output) {
+  ->setCode(function (InputInterface $input, OutputInterface $output) use ($response) {
 
     // Only allow the following arguments to validate. Otherwise produce
     // an error message.
@@ -61,7 +64,7 @@ sports type.
     if (!in_array($sportType, $sportTypeWhitelist)) {
       $output->writeln('<error>Please provide a valid sport type.</error>');
     } else {
-        $output->writeln('<info>' . $sportType . '</info>');
+        $output->writeln("<info>$response</info>");
     }
   });
 
