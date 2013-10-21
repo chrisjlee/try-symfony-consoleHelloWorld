@@ -1,5 +1,7 @@
 #!/usr/bin/env php
 <?php
+namespace CJL;
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
