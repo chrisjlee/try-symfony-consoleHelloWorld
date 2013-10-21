@@ -52,6 +52,13 @@ Validates the argument. It must be one of the following items in the whitelist:
 If argument validates it'll print out the argument you wanted. Otherwise, you
 will get a plain old error message.
 
+#### Thanks
+
+Special thanks goes to the following resources for giving me the push in the
+right direction as to how to go about writing these examples:
+
+* [Symfony Console Component](http://talater.com/symfony_console_component/)
+* [Building CLI apps with Symfony Component](http://dev.umpirsky.com/building-cli-apps-with-symfony-console-component/)
 
 
 
