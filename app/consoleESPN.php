@@ -25,7 +25,7 @@ use Guzzle\Http\Client;
  */
 // if (file_exists(__DIR__ .'secret.key' ))
 //   @include 'secret.key';
-$consumerKey = '99adppxa2pkmyrb537shwptw';
+$consumerKey = '';
 
 // Constructor
 $console = new Application('Console: ESPN', '0.1.0');
@@ -69,3 +69,22 @@ sports type.
   });
 
 $console->run();
+
+function espnConsoleCall($response) {
+  // Only allow the following arguments to validate. Otherwise produce
+  // an error message.
+  $sportTypeWhitelist = array(
+    'baseball',
+    'basketball',
+    'soccer',
+    'hockey',
+  );
+
+  $sportType = strtolower($input->getArgument('sportType'));
+
+  if (!in_array($sportType, $sportTypeWhitelist)) {
+    $output->writeln('<error>Please provide a valid sport type.</error>');
+  } else {
+      $output->writeln("<info>$response</info>");
+  }
+}
