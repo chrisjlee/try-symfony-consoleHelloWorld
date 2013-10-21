@@ -1,7 +1,6 @@
 {
   "require": {
     "symfony/console": "2.*",
-    "kriswallsmith/buzz": "dev-master",
      "guzzle/guzzle": "dev-master"
   },
   "autoload": {
