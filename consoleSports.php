@@ -9,34 +9,20 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 // use Symfony\Component\DomCrawler\Crawler;
 
-$console = new Application('Hello World', '0.1.0');
-
-$console
-  ->register('say:hello')
-  ->setDefinition(array(
-      new InputArgument('person', InputArgument::OPTIONAL, 'Who shall we greet?', 'world'),
-    ))
-  ->setDescription('Greet someone.')
-  ->setHelp('
-The <info>say:hello</info> command will offer greetings.
-
-<comment>Samples:</comment>
-  To run with default options:
-    <info>php console.php say:hello</info>
-  To greet someone specific
-    <info>php console.php say:hello</info>
-')
-  ->setCode(function (InputInterface $input, OutputInterface $output) {
-    $person = $input->getArgument('person');
-    $output->writeln('Hello <info>'.$person.'</info>');
-  });
-
+$console = new Application('ESPN', '0.1.0');
 /**
- *  Console Application: Using an Example Argument and validation
+ *  Console: Using the console perform an API request to api.espn.com
  */
+
+$key = '99adppxa2pkmyrb537shwptw';
+$uri = 'http://api.espn.com/v1/sports?apikey=';
+$resource = $key . $uri;
+
+$request = new Buzz\Message\Request('HEAD', '/', $resource);
+
 $console
-  ->register('google:run')
-  ->setDescription('Google console application that retrieves search.')
+  ->register('ESPN:run')
+  ->setDescription('.')
   ->setDefinition(array(
     new InputArgument('sportType', InputArgument::OPTIONAL, 'Please provide a sport type', 'baseball'),
   ))
@@ -54,9 +40,8 @@ $console
     if (!in_array($sportType, $sportTypeWhitelist)) {
       $output->writeln('<error>Please provide a valid sport type.</error>');
     } else {
-      $output->writeln($sportType);
+        $output->writeln($sportType);
     }
-
   });
 
 $console->run();
