@@ -35,7 +35,7 @@ whitelist of valid sports type.
       'hockey',
     );
 
-    $sportType = $input->getArgument('sportType');
+    $sportType = strtolower($input->getArgument('sportType'));
 
     if (!in_array($sportType, $sportTypeWhitelist)) {
       $output->writeln('<error>Please provide a valid sport type.</error>');
