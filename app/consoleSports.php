@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 $console = new Application('Console Sports', '0.1.0');
 /**
- *  Console: Using the console perform an API request to api.espn.com
+ *  Console: Provides example of validation of arguments
  */
 
 $console
