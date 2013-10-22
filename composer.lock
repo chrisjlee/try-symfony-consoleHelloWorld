@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c87eaf943d17b2ab0e3ea045b2cad08b",
+    "hash": "2c0f1758208c84da3a08d85ffbad4578",
     "packages": [
         {
             "name": "guzzle/guzzle",
@@ -205,6 +205,53 @@
             "time": "2013-09-19 09:45:20"
         },
         {
+            "name": "symfony/serializer",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/Serializer",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Serializer.git",
+                "reference": "6b7329fca43d1691abce0f905c0e768f6944c7d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Serializer/zipball/6b7329fca43d1691abce0f905c0e768f6944c7d2",
+                "reference": "6b7329fca43d1691abce0f905c0e768f6944c7d2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Serializer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Serializer Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-10-17 11:48:11"
+        },
+        {
             "name": "symfony/yaml",
             "version": "dev-master",
             "target-dir": "Symfony/Component/Yaml",
@@ -261,7 +308,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "guzzle/guzzle": 20,
-        "symfony/yaml": 20
+        "symfony/yaml": 20,
+        "symfony/serializer": 20
     },
     "platform": [
 

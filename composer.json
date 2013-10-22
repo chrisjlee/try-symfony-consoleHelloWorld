@@ -2,7 +2,8 @@
   "require": {
     "symfony/console": "2.*",
     "guzzle/guzzle": "dev-master",
-    "symfony/yaml": "2.4.*@dev"
+    "symfony/yaml": "2.4.*@dev",
+    "symfony/serializer": "2.4.*@dev"
   },
   "autoload": {
       "psr-0": {"CJL": "src/"}
