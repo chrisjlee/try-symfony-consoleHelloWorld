@@ -9,7 +9,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Yaml\Parser;
 use Guzzle\Http\Client;
+
 
 /**
  * Load ESPN key file.
@@ -25,9 +27,18 @@ use Guzzle\Http\Client;
  */
 // if (file_exists(__DIR__ .'secret.key' ))
 //   @include 'secret.key';
-$consumerKey = '';
+$consumerKey = '99adppxa2pkmyrb537shwptw';
 
-// Constructor
+/**
+ * Parse the api key from a yaml file
+ */
+$yaml = new Parser();
+$value = $yaml->parse(file_get_contents( __DIR__ . '/../config/secret.yml'));
+$key = $value['apikey'];
+
+/**
+ * Console constructor
+ */
 $console = new Application('Console: ESPN', '0.1.0');
 
 /**
@@ -35,8 +46,7 @@ $console = new Application('Console: ESPN', '0.1.0');
  */
 
 $client = new Client('https://api.espn.com/{version}/sports');
-$request = $client->get("sports?apikey=$consumerKey");
-$response = $request->send();
+
 
 $console
   ->register('espn:run')
@@ -48,7 +58,11 @@ sports type.
   ->setDefinition(array(
     new InputArgument('sportType', InputArgument::OPTIONAL, 'Please provide a sport type', 'baseball'),
   ))
-  ->setCode(function (InputInterface $input, OutputInterface $output) use ($response) {
+  ->setCode(function (InputInterface $input, OutputInterface $output) use ($client, $key) {
+
+    $request = $client->get("sports?apikey=$key");
+    $response = $request->send();
+    $responseBody = $response->getBody();
 
     // Only allow the following arguments to validate. Otherwise produce
     // an error message.
@@ -63,28 +77,12 @@ sports type.
 
     if (!in_array($sportType, $sportTypeWhitelist)) {
       $output->writeln('<error>Please provide a valid sport type.</error>');
-    } else {
-        $output->writeln("<info>$response</info>");
+      return;
     }
+
+    // $output->writeln($responseBody);
+    $output->writeln("<info>$responseBody</info>");
+
   });
 
 $console->run();
-
-function espnConsoleCall($response) {
-  // Only allow the following arguments to validate. Otherwise produce
-  // an error message.
-  $sportTypeWhitelist = array(
-    'baseball',
-    'basketball',
-    'soccer',
-    'hockey',
-  );
-
-  $sportType = strtolower($input->getArgument('sportType'));
-
-  if (!in_array($sportType, $sportTypeWhitelist)) {
-    $output->writeln('<error>Please provide a valid sport type.</error>');
-  } else {
-      $output->writeln("<info>$response</info>");
-  }
-}

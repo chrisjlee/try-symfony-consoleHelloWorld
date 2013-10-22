@@ -1,2 +1,2 @@
 vendor
-*.key
+config/secret.yml
