@@ -27,7 +27,6 @@ use Guzzle\Http\Client;
  */
 // if (file_exists(__DIR__ .'secret.key' ))
 //   @include 'secret.key';
-$consumerKey = '99adppxa2pkmyrb537shwptw';
 
 /**
  * Parse the api key from a yaml file
